@@ -186,60 +186,60 @@
         <!-- Cat cards grid -->
         <div id="catsGrid" class="cats-grid"></div>
 
-        <!-- Adoption Application Form -->
+        <!-- Adoption Application Form (Connected to Formspree) -->
         <div class="form-container" style="margin-top: 5rem;">
             <div style="text-align: center; margin-bottom: 2rem;">
                 <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Open your home. Open your heart.</h2>
                 <p style="color: var(--color-text-muted);">Tell us a little about yourself, and we'll help you find a wonderful match.</p>
             </div>
 
-            <form onsubmit="event.preventDefault(); alert('Application submitted successfully! Our team will get in touch soon.');">
+            <form action="https://formspree.io/f/meagawdv" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label>Your name</label>
-                        <input type="text" required placeholder="Full name">
+                        <input type="text" name="applicant_name" required placeholder="Full name">
                     </div>
                     <div class="form-group">
                         <label>Email address</label>
-                        <input type="email" required placeholder="name@example.com">
+                        <input type="email" name="email" required placeholder="name@example.com">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label>Phone</label>
-                        <input type="tel" placeholder="(555) 000-0000">
+                        <input type="tel" name="phone" placeholder="(555) 000-0000">
                     </div>
                     <div class="form-group">
                         <label>Home address</label>
-                        <input type="text" placeholder="City, State">
+                        <input type="text" name="address" placeholder="City, State">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label>Household members</label>
-                        <input type="text" placeholder="Adults, children">
+                        <input type="text" name="household" placeholder="Adults, children">
                     </div>
                     <div class="form-group">
                         <label>Other pets (or none)</label>
-                        <input type="text" placeholder="Dogs, cats, etc.">
+                        <input type="text" name="other_pets" placeholder="Dogs, cats, etc.">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Housing type</label>
-                    <input type="text" placeholder="Rent / Own / House / Apartment">
+                    <input type="text" name="housing_type" placeholder="Rent / Own / House / Apartment">
                 </div>
 
                 <div class="form-group">
                     <label>Experience with cats</label>
-                    <textarea placeholder="Tell us about your past cat experience..."></textarea>
+                    <textarea name="experience" placeholder="Tell us about your past cat experience..."></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Which cat are you interested in?</label>
-                    <input type="text" id="preferredCatInput" placeholder="Cat's name or 'Open to suggestions'">
+                    <input type="text" id="preferredCatInput" name="preferred_cat" placeholder="Cat's name or 'Open to suggestions'">
                 </div>
 
                 <button type="submit" class="btn btn-adopt" style="width: 100%; justify-content: center; padding: 0.85rem;">Submit Adoption Application</button>
@@ -366,7 +366,7 @@
                 <span style="font-size: 0.8rem; color: var(--color-text-muted);">Zero fees · 100% goes to the cats</span>
             </div>
 
-            <!-- PayPal Donate Card with Image Placeholder -->
+            <!-- PayPal Donate Card -->
             <div class="donate-card">
                 <div>
                     <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Or PayPal</h3>
@@ -376,13 +376,13 @@
                     <img src="assets/paypal.avif" alt="PayPal Logo or QR" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <div style="width: 100%;">
-                    <a href="#" class="btn btn-paypal" onclick="event.preventDefault(); alert('PayPal placeholder link! Add your real PayPal URL in index.html.');">
+                    <a href="https://www.paypal.com/donate?token=vBT5G6IPgSMtpk5wDrFXfe_6Wi3FQCywvgbFp5bnK0TqaI9ul7vPOMMEkcTvpZCqD9UmtjQOn4nSJS_f" target="_blank" rel="noopener noreferrer" class="btn btn-paypal">
                         Donate with PayPal
                     </a>
                 </div>
             </div>
 
-            <!-- Amazon Wish List Card with Image Placeholder -->
+            <!-- Amazon Wish List Card -->
             <div class="donate-card">
                 <div>
                     <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Help us with Amazon</h3>
@@ -392,7 +392,7 @@
                     <img src="assets/amazonWishList.avif" alt="Amazon QR or Logo" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <div style="width: 100%;">
-                    <a href="#" class="btn btn-amazon" onclick="event.preventDefault(); alert('Amazon Wish List placeholder link! Add your real Wish List URL in index.html.');">
+                    <a href="https://www.amazon.com/hz/wishlist/ls/32PLBD2R3MAKE?ref_=wl_share/" target="_blank" rel="noopener noreferrer" class="btn btn-amazon">
                         🎁 View Amazon Wish List
                     </a>
                 </div>
@@ -427,7 +427,7 @@
     </section>
 
     <!-- =================================================================
-        FOOTER (Restored)
+        FOOTER
         ================================================================= -->
     <footer class="footer">
         <div class="footer-content">
