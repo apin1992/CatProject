@@ -1,8 +1,5 @@
 /* =================================================================
    1. CAT DATA & MANAGEMENT (YOUR 12 SANCTUARY CATS)
-   To add a cat: Copy one block between { } brackets, paste it at the 
-   bottom of the list, and change the details.
-   To remove a cat: Highlight and delete its block.
    ================================================================= */
 const catsData = [
     {
@@ -219,8 +216,15 @@ function openAdoptFormForCat(catName) {
 }
 
 /* =================================================================
-   4. EVENT LISTENERS & FAQ ACCORDION TOGGLE
+   4. MOBILE MENU & EVENT LISTENERS
    ================================================================= */
+function closeMobileMenu() {
+    const navLinks = document.getElementById("navLinksMenu");
+    if (navLinks) {
+        navLinks.classList.remove("active");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     renderCats(catsData);
 
@@ -233,6 +237,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (ageSelect) ageSelect.addEventListener("change", filterCats);
     if (sexSelect) sexSelect.addEventListener("change", filterCats);
     checkboxes.forEach(box => box.addEventListener("change", filterCats));
+
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const navLinksMenu = document.getElementById("navLinksMenu");
+
+    if (mobileMenuBtn && navLinksMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+            navLinksMenu.classList.toggle("active");
+        });
+    }
 
     // FAQ Click-to-Reveal Logic
     const faqItems = document.querySelectorAll(".faq-item");

@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dower House Cats - A sanctuary for cats that have lost their home.</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
 
     <!-- =================================================================
-       NAVIGATION BAR
-       ================================================================= -->
+        NAVIGATION BAR
+        ================================================================= -->
     <header class="navbar">
         <a href="#home" class="nav-brand">
             <div class="brand-icons"><img src="assets/main-logo-small.png" alt="Logo"></div>
@@ -20,13 +21,18 @@
             </div>
         </a>
 
-        <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#adopt">Adopt</a></li>
-            <li><a href="#volunteer">Volunteer</a></li>
-            <li><a href="#resources">Resources</a></li>
-            <li><a href="#sanctuary">The Sanctuary</a></li>
+        <!-- Hamburger Toggle Button for Mobile/Tablets -->
+        <button class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            ☰
+        </button>
+
+        <ul class="nav-links" id="navLinksMenu">
+            <li><a href="#home" class="active" onclick="closeMobileMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMobileMenu()">About Us</a></li>
+            <li><a href="#adopt" onclick="closeMobileMenu()">Adopt</a></li>
+            <li><a href="#volunteer" onclick="closeMobileMenu()">Volunteer</a></li>
+            <li><a href="#resources" onclick="closeMobileMenu()">Resources</a></li>
+            <li><a href="#sanctuary" onclick="closeMobileMenu()">The Sanctuary</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -36,8 +42,8 @@
     </header>
 
     <!-- =================================================================
-       SECTION 1: HOME (Hero with Cat Background Image & Intro Copy)
-       ================================================================= -->
+        SECTION 1: HOME (Hero with Cat Background Image & Intro Copy)
+        ================================================================= -->
     <section id="home" class="hero-section hero-with-bg">
         <span class="badge-tag">🐾 Eloy, Arizona</span>
         <h1>A sanctuary for cats that have lost their home.</h1>
@@ -54,8 +60,8 @@
     </section>
 
     <!-- =================================================================
-       SECTION 2: ABOUT US, ARIZONA NONPROFIT & BOARD (SHERRI & RAND DOWER)
-       ================================================================= -->
+        SECTION 2: ABOUT US, ARIZONA NONPROFIT & BOARD (SHERRI & RAND DOWER)
+        ================================================================= -->
     <section id="about" class="container">
         <div class="split-grid">
             <div>
@@ -72,7 +78,7 @@
                     In fact, our founding board members can be found all over Arizona. We all met twenty years ago as young college kids, and even then our President Sherri had an affinity for cats.
                 </p>
             </div>
-            <!-- About Us Image Box (No more blue square, uses a clean container) -->
+            <!-- About Us Image Box -->
             <div class="image-placeholder-box">
                 <img src="assets/sherri_rand.jpg" alt="Sherri and Rand Dower" class="aboutus-image">
             </div>
@@ -87,7 +93,7 @@
             <div class="board-grid" style="max-width: 800px; margin: 2rem auto 0;">
                 <div class="board-card">
                     <div class="section-photo-placeholder" style="height: 150px; background: var(--color-white);">
-                        <img src="assets/sherri_rand.jpg" alt="Sherri Dower" class="board-img">
+                        <img src="assets/SherriDower.png" alt="Sherri Dower" class="board-img">
                     </div>
                     <h4 style="font-size: 1.2rem; margin-bottom: 0.25rem;">Sherri Dower</h4>
                     <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-dark-pink); display: block; margin-bottom: 0.5rem;">President & Founder</span>
@@ -96,7 +102,7 @@
 
                 <div class="board-card">
                     <div class="section-photo-placeholder" style="height: 150px; background: var(--color-white);">
-                        <img src="assets/sherri_rand.jpg" alt="Rand Dower" class="board-img">
+                        <img src="assets/RandDower.png" alt="Rand Dower" class="board-img">
                     </div>
                     <h4 style="font-size: 1.2rem; margin-bottom: 0.25rem;">Rand Dower</h4>
                     <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-dark-pink); display: block; margin-bottom: 0.5rem;">Founding Board Member</span>
@@ -116,21 +122,21 @@
         <div class="cards-grid-3" style="max-width: 1000px; margin: 3rem auto 0;">
             <div class="info-card">
                 <div class="section-photo-placeholder" style="height: 140px;">
-                    <img src="assets/mission-1.jpg" alt="Compassion" class="card-img">
+                    <img src="assets/compassionCat.avif" alt="Compassion" class="card-img">
                 </div>
                 <h3>♡ Compassion</h3>
                 <p>Care for each cat as an individual.</p>
             </div>
             <div class="info-card blue-tint">
                 <div class="section-photo-placeholder" style="height: 140px;">
-                    <img src="assets/mission-2.jpg" alt="Belonging" class="card-img">
+                    <img src="assets/belongingCat.avif" alt="Belonging" class="card-img">
                 </div>
                 <h3>🏠 Belonging</h3>
                 <p>A real home, never a countdown.</p>
             </div>
             <div class="info-card">
                 <div class="section-photo-placeholder" style="height: 140px;">
-                    <img src="assets/mission-3.jpg" alt="Community" class="card-img">
+                    <img src="assets/communityCat.avif" alt="Community" class="card-img">
                 </div>
                 <h3>🤝 Community</h3>
                 <p>Better lives, built together.</p>
@@ -139,8 +145,8 @@
     </div>
 
     <!-- =================================================================
-       SECTION 3: ADOPT (Search & Your 12 Cats)
-       ================================================================= -->
+        SECTION 3: ADOPT (Search & Your 12 Cats)
+        ================================================================= -->
     <section id="adopt" class="container">
         <div style="text-align: center; margin-bottom: 2.5rem;">
             <span class="badge-tag">Meet the Cats</span>
@@ -176,7 +182,7 @@
 
         <div id="catCountText" class="cat-count-text">Loading cats...</div>
 
-        <!-- Cat cards grid (populated from script.js) -->
+        <!-- Cat cards grid -->
         <div id="catsGrid" class="cats-grid"></div>
 
         <!-- Adoption Application Form -->
@@ -241,8 +247,8 @@
     </section>
 
     <!-- =================================================================
-       SECTION 4: VOLUNTEER
-       ================================================================= -->
+        SECTION 4: VOLUNTEER
+        ================================================================= -->
     <section id="volunteer" class="container" style="background-color: var(--color-light-blue); max-width: 100%; padding: 4rem 2rem;">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div style="text-align: center; margin-bottom: 2.5rem;">
@@ -254,21 +260,21 @@
             <div class="cards-grid-3">
                 <div class="info-card">
                     <div class="section-photo-placeholder">
-                        <img src="assets/volunteer-1.jpg" alt="Cat Socialization" class="card-img">
+                        <img src="assets/catSocialization.avif" alt="Cat Socialization" class="card-img">
                     </div>
                     <h3>Cat socialization</h3>
                     <p>Gentle company, playtime, and patient affection help cats grow in confidence.</p>
                 </div>
                 <div class="info-card">
                     <div class="section-photo-placeholder">
-                        <img src="assets/volunteer-2.jpg" alt="Sanctuary Care" class="card-img">
+                        <img src="assets/sanctuaryCare.avif" alt="Sanctuary Care" class="card-img">
                     </div>
                     <h3>Daily sanctuary care</h3>
                     <p>Help keep bowls full, bedding fresh, and our shared home comfortable.</p>
                 </div>
                 <div class="info-card">
                     <div class="section-photo-placeholder">
-                        <img src="assets/volunteer-3.jpg" alt="Community Events" class="card-img">
+                        <img src="assets/communityCat.avif" alt="Community Events" class="card-img">
                     </div>
                     <h3>Community events</h3>
                     <p>Help our cats meet the community at adoption and fundraising events.</p>
@@ -278,8 +284,8 @@
     </section>
 
     <!-- =================================================================
-       SECTION 5: RESOURCES & CLICK-TO-REVEAL FAQ
-       ================================================================= -->
+        SECTION 5: RESOURCES & CLICK-TO-REVEAL FAQ
+        ================================================================= -->
     <section id="resources" class="container">
         <div style="text-align: center; margin-bottom: 2.5rem;">
             <span class="badge-tag">A Little Knowledge. A Lot of Care.</span>
@@ -290,7 +296,7 @@
         <div class="cards-grid-3" style="margin-bottom: 4rem;">
             <div class="info-card">
                 <div class="section-photo-placeholder" style="height: 160px;">
-                    <img src="assets/resource-1.jpg" alt="New Cat Checklist" class="card-img">
+                    <img src="assets/newCatChecklist.avif" alt="New Cat Checklist" class="card-img">
                 </div>
                 <span class="badge-tag">Starting Together</span>
                 <h3>New cat checklist</h3>
@@ -298,7 +304,7 @@
             </div>
             <div class="info-card">
                 <div class="section-photo-placeholder" style="height: 160px;">
-                    <img src="assets/resource-2.jpg" alt="Kids & Cats" class="card-img">
+                    <img src="assets/kidsAndCats.avif" alt="Kids & Cats" class="card-img">
                 </div>
                 <span class="badge-tag">Family Life</span>
                 <h3>Introducing cats to kids</h3>
@@ -306,7 +312,7 @@
             </div>
             <div class="info-card">
                 <div class="section-photo-placeholder" style="height: 160px;">
-                    <img src="assets/resource-3.jpg" alt="Pets Together" class="card-img">
+                    <img src="assets/petsTogether.avif" alt="Pets Together" class="card-img">
                 </div>
                 <span class="badge-tag">Family Life</span>
                 <h3>Introducing cats to other pets</h3>
@@ -337,8 +343,8 @@
     </section>
 
     <!-- =================================================================
-       SECTION 6: DONATE & AMAZON WISH LIST (Zelle QR, PayPal, Amazon)
-       ================================================================= -->
+        SECTION 6: DONATE & AMAZON WISH LIST (Zelle, PayPal, Amazon)
+        ================================================================= -->
     <section id="donate" class="section-pink-bg" style="text-align: center;">
         <span class="badge-tag">Support Our Cats</span>
         <h2 class="section-title">Help us, donate today!</h2>
@@ -354,109 +360,29 @@
                     <p style="font-size: 0.9rem; color: var(--color-text-muted);">Scan the QR code below with your banking app.</p>
                 </div>
                 <div class="qr-placeholder">
-                    <img src="assets/zelle-qr.png" alt="Zelle QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+                    <img src="assets/Zelle.png" alt="Zelle QR Code" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <span style="font-size: 0.8rem; color: var(--color-text-muted);">Zero fees · 100% goes to the cats</span>
             </div>
 
-            <!-- PayPal Donate Button Card -->
+            <!-- PayPal Donate Card with Image Placeholder -->
             <div class="donate-card">
                 <div>
                     <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Or PayPal</h3>
                     <p style="font-size: 0.9rem; color: var(--color-text-muted);">Make a quick one-time or monthly donation securely through PayPal.</p>
                 </div>
+                <div class="qr-placeholder">
+                    <img src="assets/paypal.avif" alt="PayPal Logo or QR" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
                 <div style="width: 100%;">
                     <a href="#" class="btn btn-paypal" onclick="event.preventDefault(); alert('PayPal placeholder link! Add your real PayPal URL in index.html.');">
-                        Donate with PayPal (Placeholder)
+                        Donate with PayPal
                     </a>
                 </div>
             </div>
 
-            <!-- Amazon Wish List Card -->
+            <!-- Amazon Wish List Card with Image Placeholder -->
             <div class="donate-card">
                 <div>
                     <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Help us with Amazon</h3>
-                    <p style="font-size: 0.9rem; color: var(--color-text-muted);">Send food, toys, and daily sanctuary supplies straight to our door via our Wish List.</p>
-                </div>
-                <div style="width: 100%;">
-                    <a href="#" class="btn btn-amazon" onclick="event.preventDefault(); alert('Amazon Wish List placeholder link! Add your real Wish List URL in index.html.');">
-                        🎁 View Amazon Wish List (Placeholder)
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =================================================================
-       SECTION 7: THE SANCTUARY & LOCATION (At bottom before footer)
-       ================================================================= -->
-    <section id="sanctuary" class="container" style="text-align: center;">
-        <span class="badge-tag">The Sanctuary & Location</span>
-        <h2 class="section-title">Find our little corner of heaven</h2>
-        <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Eloy, Arizona · Please contact the team to coordinate a visit.</p>
-        
-        <div class="sanctuary-gallery">
-            <div class="section-photo-placeholder" style="margin-bottom: 0; height: 220px;">
-                <img src="assets/sanctuary-1.jpg" alt="Sanctuary Living Room" class="card-img">
-            </div>
-            <div class="section-photo-placeholder" style="margin-bottom: 0; height: 220px;">
-                <img src="assets/sanctuary-2.jpg" alt="Cat Sunroom" class="card-img">
-            </div>
-            <div class="section-photo-placeholder" style="margin-bottom: 0; height: 220px;">
-                <img src="assets/sanctuary-3.jpg" alt="Cozy Cat Beds" class="card-img">
-            </div>
-        </div>
-
-        <div class="map-placeholder" style="margin: 0 auto; max-width: 800px;">
-            <strong>Google Maps Embed Placeholder</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Eloy, AZ, USA</p>
-        </div>
-    </section>
-
-    <!-- =================================================================
-       FOOTER (Facebook & Instagram Only)
-       ================================================================= -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div>
-                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                    <div class="brand-icon">🐾</div>
-                    <span style="font-weight: 700; font-size: 1.1rem;">Dower House Cats</span>
-                </div>
-                <p style="color: var(--color-text-muted); font-size: 0.9rem; max-width: 320px;">
-                    A real home for every cat. A second chance for every story. Made possible by a community that cares.
-                </p>
-                <div class="footer-socials">
-                    <a href="#" class="btn btn-adopt" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Facebook</a>
-                    <a href="#" class="btn btn-donate" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Instagram</a>
-                </div>
-            </div>
-
-            <div>
-                <h4>Come on in</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#adopt">Adopt</a></li>
-                    <li><a href="#volunteer">Volunteer</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#sanctuary">The Sanctuary</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4>Find us & help</h4>
-                <ul>
-                    <li>📍 Eloy, Arizona</li>
-                    <li><a href="#donate">Donate (Zelle & PayPal)</a></li>
-                    <li><a href="#donate">Amazon Wish List</a></li>
-                    <li><a href="#volunteer">Volunteer with us</a></li>
-                </ul>
-                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 1rem;">A little bit of fluffy heaven in Eloy, Arizona.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+                    <p style="font-
