@@ -883,3 +883,32 @@ img {
     height: 100%;
     object-fit: cover;
 }
+/* =================================================================
+   CLEAN LOGO FIXES (No pink circle or blue dashed box)
+   ================================================================= */
+
+/* Removes the pink circle behind the top navbar logo */
+.brand-icons {
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    height: 45px !important;
+}
+
+.brand-icons img {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Removes the blue dashed box behind the Arizona Nonprofit logo */
+.nonprofit-badge {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.small-image {
+    max-height: 60px !important; /* Adjust this number if you want the AZ logo bigger or smaller */
+    width: auto !important;
+}
