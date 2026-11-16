@@ -759,3 +759,39 @@ img {
     border: none !important;
     background: transparent !important;
 }
+/* Centered, compact light-blue cat card button */
+.cat-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary-blue);
+    color: #0369a1;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0 auto 1.25rem auto; /* Centers the button horizontally */
+    width: fit-content;            /* Keeps it compact instead of full width */
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.cat-card-footer:hover {
+    background-color: #38bdf8;
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+/* Center all text inside the cat card info section */
+.cat-card .cat-info {
+    text-align: center;
+}
+
+/* Center the tags list so they wrap nicely in the middle */
+.cat-card .cat-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}

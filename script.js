@@ -10,7 +10,7 @@ const catsData = [
         status: "Looking for love",
         bio: "A gentle soul with a big heart and an even bigger purr.",
         tags: ["Good with cats", "Good with kids"],
-        imagePlaceholder: "Cat Photo (Ace)"
+        image: "assets/ace.jpg"
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Your new sunbeam-seeking, couch-sharing best friend.",
         tags: ["Good with cats", "Good with dogs"],
-        imagePlaceholder: "Cat Photo (Ashlad)"
+        image: "assets/ashlad.jpg"
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ const catsData = [
         status: "Looking for love",
         bio: "A little personality. A whole lot of love.",
         tags: ["Good with kids", "Good with cats"],
-        imagePlaceholder: "Cat Photo (Bri Bri Pig Pie)"
+        image: "assets/bribripigbre.jpg"
     },
     {
         id: 4,
@@ -40,7 +40,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Playful paws and a curious little nose.",
         tags: ["Good with cats", "Good with dogs"],
-        imagePlaceholder: "Cat Photo (Dizzy)"
+        image: "assets/dizzy.avif"
     },
     {
         id: 5,
@@ -50,7 +50,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Sweet, gentle companion who loves sunny window perches.",
         tags: ["Good with cats"],
-        imagePlaceholder: "Cat Photo (Fumi)"
+        image: "assets/fumi.jpg"
     },
     {
         id: 6,
@@ -60,7 +60,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Curious explorer ready for cozy evenings on the couch.",
         tags: ["Good with cats", "Good with kids"],
-        imagePlaceholder: "Cat Photo (Indy)"
+        image: "assets/indy.jpg"
     },
     {
         id: 7,
@@ -70,7 +70,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Soft-spoken sweetheart who adores chin scratches.",
         tags: ["Good with cats"],
-        imagePlaceholder: "Cat Photo (Lemi)"
+        image: "assets/lemi.jpg"
     },
     {
         id: 8,
@@ -80,7 +80,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Graceful, affectionate friend looking for a loving home.",
         tags: ["Good with kids", "Good with cats"],
-        imagePlaceholder: "Cat Photo (Madeline)"
+        image: "assets/madeline.jpg"
     },
     {
         id: 9,
@@ -90,7 +90,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Stunning coat and an even sweeter personality.",
         tags: ["Good with cats", "Good with dogs"],
-        imagePlaceholder: "Cat Photo (Marble)"
+        image: "assets/marble.jpg"
     },
     {
         id: 10,
@@ -100,7 +100,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Calm, loving lap cat who enjoys peaceful afternoons.",
         tags: ["Good with cats", "Special needs"],
-        imagePlaceholder: "Cat Photo (Matilda)"
+        image: "assets/matilda.jpg"
     },
     {
         id: 11,
@@ -110,7 +110,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Playful little dash of energy and affection.",
         tags: ["Good with kids", "Good with cats"],
-        imagePlaceholder: "Cat Photo (Penny Dash)"
+        image: "assets/pennydash.jpg"
     },
     {
         id: 12,
@@ -120,7 +120,7 @@ const catsData = [
         status: "Looking for love",
         bio: "Loyal, velvety friend ready to be your constant companion.",
         tags: ["Good with cats", "Good with dogs"],
-        imagePlaceholder: "Cat Photo (Smokey)"
+        image: "assets/smokey.jpg"
     }
 ];
 
@@ -144,7 +144,7 @@ function renderCats(catsToDisplay) {
         return;
     }
 
-    catsToDisplay.forEach(cat => {
+catsToDisplay.forEach(cat => {
         const card = document.createElement("div");
         card.className = "cat-card";
 
@@ -152,14 +152,14 @@ function renderCats(catsToDisplay) {
 
         card.innerHTML = `
             <div class="cat-img-placeholder">
-                <span>${cat.imagePlaceholder}</span>
-                <div class="cat-status-badge">${cat.status}</div>
+                <img src="${cat.image}" alt="${cat.name}" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="cat-info">
                 <h3>${cat.name}</h3>
                 <div class="cat-meta">${cat.age} · ${cat.sex}</div>
                 <p class="cat-bio">${cat.bio}</p>
                 <div class="cat-tags">${tagsHtml}</div>
+                <div class="cat-status-text" style="margin-top: 0.75rem; font-size: 0.85rem; font-weight: 600; color: var(--color-dark-pink);">♡ ${cat.status}</div>
             </div>
             <button class="cat-card-footer" onclick="openAdoptFormForCat('${cat.name}')">
                 <span>Meet ${cat.name}</span>
@@ -218,13 +218,6 @@ function openAdoptFormForCat(catName) {
 /* =================================================================
    4. MOBILE MENU & EVENT LISTENERS
    ================================================================= */
-function closeMobileMenu() {
-    const navLinks = document.getElementById("navLinksMenu");
-    if (navLinks) {
-        navLinks.classList.remove("active");
-    }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     renderCats(catsData);
 
@@ -243,8 +236,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinksMenu = document.getElementById("navLinksMenu");
 
     if (mobileMenuBtn && navLinksMenu) {
-        mobileMenuBtn.addEventListener("click", () => {
+        mobileMenuBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
             navLinksMenu.classList.toggle("active");
+        });
+
+        // Close menu when clicking any link inside
+        const menuLinks = navLinksMenu.querySelectorAll("a");
+        menuLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                navLinksMenu.classList.remove("active");
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!navLinksMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navLinksMenu.classList.remove("active");
+            }
         });
     }
 
