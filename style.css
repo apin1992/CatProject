@@ -3,12 +3,12 @@
    ================================================================= */
 :root {
     --color-primary-pink: #fbcfe8;   
-    --color-light-pink: #fdf2f4;     
+    --color-light-pink: #fdf2f4;    
     --color-dark-pink: #db2777;      
     --color-primary-blue: #bae6fd;   
-    --color-light-blue: #e0f2fe;     
+    --color-light-blue: #e0f2fe;    
     --color-text-dark: #1e293b;      
-    --color-text-muted: #363a40;     
+    --color-text-muted: #363a40;    
     --color-white: #ffffff;          
     --color-border: #e2e8f0;         
     --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -40,6 +40,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    gap: 1rem;
 }
 
 .nav-brand {
@@ -85,6 +86,7 @@ body {
 .nav-actions {
     display: flex;
     gap: 0.75rem;
+    margin-left: 1rem;
 }
 
 /* Hamburger Button (Hidden on desktop by default) */
@@ -176,6 +178,12 @@ body {
     font-weight: 800;
     color: var(--color-text-dark);
     margin-bottom: 1rem;
+}
+
+/* Make hero title dark and readable */
+.hero-section h1 {
+    color: var(--color-text-dark) !important;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
 }
 
 .hero-section p,
@@ -335,6 +343,7 @@ body {
 .cat-info {
     padding: 1.25rem;
     flex: 1;
+    text-align: center;
 }
 
 .cat-info h3 {
@@ -352,6 +361,37 @@ body {
     font-size: 0.9rem;
     color: var(--color-text-muted);
     margin-bottom: 1rem;
+}
+
+.cat-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.cat-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary-blue);
+    color: #0369a1;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0 auto 1.25rem auto;
+    width: fit-content;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.cat-card-footer:hover {
+    background-color: #38bdf8;
+    color: var(--color-white);
+    transform: translateY(-2px);
 }
 
 /* =================================================================
@@ -484,11 +524,11 @@ body {
    ================================================================= */
 @media (max-width: 900px) {
     .menu-toggle {
-        display: block; /* Shows the hamburger button */
+        display: block;
     }
 
     .nav-links {
-        display: none; /* Hides the standard horizontal link list */
+        display: none;
         flex-direction: column;
         width: 100%;
         background-color: var(--color-white);
@@ -502,13 +542,12 @@ body {
         align-items: flex-start;
     }
 
-    /* When active via JavaScript, it slides/shows down */
     .nav-links.active {
         display: flex; 
     }
 
     .nav-actions {
-        display: none; /* Optional: hides desktop buttons in header to keep it compact */
+        display: none;
     }
 
     .split-grid,
@@ -759,43 +798,10 @@ img {
     border: none !important;
     background: transparent !important;
 }
-/* Centered, compact light-blue cat card button */
-.cat-card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background-color: var(--color-primary-blue);
-    color: #0369a1;
-    border: none;
-    border-radius: 8px;
-    padding: 0.6rem 1.25rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    margin: 0 auto 1.25rem auto; /* Centers the button horizontally */
-    width: fit-content;            /* Keeps it compact instead of full width */
-    transition: background-color 0.2s, transform 0.1s;
-}
 
-.cat-card-footer:hover {
-    background-color: #38bdf8;
-    color: var(--color-white);
-    transform: translateY(-2px);
-}
-/* Center all text inside the cat card info section */
-.cat-card .cat-info {
-    text-align: center;
-}
-
-/* Center the tags list so they wrap nicely in the middle */
-.cat-card .cat-tags {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-}
-/* Cat Image Lightbox Modal Styles */
+/* =================================================================
+   LIGHTBOX MODAL
+   ================================================================= */
 .cat-modal {
     display: none;
     position: fixed;
@@ -856,4 +862,71 @@ img {
 
 .close-modal:hover {
     color: var(--color-dark-pink);
+}
+
+/* =================================================================
+   DARK MODE STYLES & TOGGLE BUTTON
+   ================================================================= */
+.dark-mode-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode {
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-text-dark: #f3f4f6;
+    --color-text-muted: #9ca3af;
+    --color-light-pink: #1f161a;
+    --color-light-blue: #16202b;
+    --color-white: #1a1a1a;
+    --color-border: #2d2d2d;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .footer {
+    background-color: #181818 !important;
+    border-color: #2d2d2d !important;
+}
+
+body.dark-mode .cat-card,
+body.dark-mode .donate-card,
+body.dark-mode .info-card,
+body.dark-mode .board-card,
+body.dark-mode .form-container,
+body.dark-mode .faq-item {
+    background-color: #1e1e1e !important;
+    border-color: #2d2d2d !important;
+    color: #f3f4f6;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: #2a2a2a !important;
+    color: #fff !important;
+    border-color: #444 !important;
+}
+
+body.dark-mode .dark-mode-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+/* Force dark text inside the hero section when Dark Mode is active */
+body.dark-mode .hero-section h1,
+body.dark-mode .hero-section p,
+body.dark-mode .hero-section .badge-tag {
+    color: #1e293b !important;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
 }

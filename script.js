@@ -1,5 +1,5 @@
 /* =================================================================
-   1. CAT DATA & MANAGEMENT (YOUR 12 SANCTUARY CATS)
+   1. CAT DATA & MANAGEMENT (YOUR SANCTUARY CATS)
    ================================================================= */
 const catsData = [
     {
@@ -131,7 +131,7 @@ const catsData = [
         bio: "Tiny but mighty, with a heart full of love to give.",
         tags: ["Good with cats", "Good with kids"],
         image: "assets/lucky.jpg"
-    },
+    }
 ];
 
 /* =================================================================
@@ -154,7 +154,7 @@ function renderCats(catsToDisplay) {
         return;
     }
 
-catsToDisplay.forEach(cat => {
+    catsToDisplay.forEach(cat => {
         const card = document.createElement("div");
         card.className = "cat-card";
 
@@ -176,114 +176,67 @@ catsToDisplay.forEach(cat => {
                 <span>→</span>
             </button>
         `;
-
         gridContainer.appendChild(card);
     });
 }
 
 /* =================================================================
-   3. FILTER AND SEARCH LOGIC
+   3. FILTER & SEARCH LOGIC
    ================================================================= */
 function filterCats() {
-    const searchInput = document.getElementById("catSearchInput");
-    const ageSelect = document.getElementById("ageFilterSelect");
-    const sexSelect = document.getElementById("sexFilterSelect");
+    const query = document.getElementById("catSearchInput")?.value.toLowerCase() || "";
+    const selectedAge = document.getElementById("ageFilterSelect")?.value || "all";
+    const selectedSex = document.getElementById("sexFilterSelect")?.value || "all";
     
-    const goodWithKids = document.getElementById("filterKids")?.checked || false;
-    const goodWithCats = document.getElementById("filterCats")?.checked || false;
-    const goodWithDogs = document.getElementById("filterDogs")?.checked || false;
-    const specialNeeds = document.getElementById("filterSpecial")?.checked || false;
-
-    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : "";
-    const selectedAge = ageSelect ? ageSelect.value : "all";
-    const selectedSex = sexSelect ? sexSelect.value : "all";
+    const filterKids = document.getElementById("filterKids")?.checked || false;
+    const filterCatsCheck = document.getElementById("filterCats")?.checked || false;
+    const filterDogs = document.getElementById("filterDogs")?.checked || false;
+    const filterSpecial = document.getElementById("filterSpecial")?.checked || false;
 
     const filtered = catsData.filter(cat => {
-        const matchesSearch = cat.name.toLowerCase().includes(searchTerm) || 
-                              cat.bio.toLowerCase().includes(searchTerm);
-        const matchesAge = selectedAge === "all" || cat.age.toLowerCase().includes(selectedAge);
+        const matchesQuery = cat.name.toLowerCase().includes(query) || cat.bio.toLowerCase().includes(query);
+        const matchesAge = selectedAge === "all" || cat.age === selectedAge;
         const matchesSex = selectedSex === "all" || cat.sex.toLowerCase() === selectedSex.toLowerCase();
 
-        const matchesKids = !goodWithKids || cat.tags.includes("Good with kids");
-        const matchesCatTag = !goodWithCats || cat.tags.includes("Good with cats");
-        const matchesDogTag = !goodWithDogs || cat.tags.includes("Good with dogs");
-        const matchesSpecial = !specialNeeds || cat.tags.includes("Special needs");
+        const matchesKids = !filterKids || cat.tags.includes("Good with kids");
+        const matchesCatsTag = !filterCatsCheck || cat.tags.includes("Good with cats");
+        const matchesDogs = !filterDogs || cat.tags.includes("Good with dogs");
+        const matchesSpecial = !filterSpecial || cat.tags.includes("Special needs");
 
-        return matchesSearch && matchesAge && matchesSex && matchesKids && matchesCatTag && matchesDogTag && matchesSpecial;
+        return matchesQuery && matchesAge && matchesSex && matchesKids && matchesCatsTag && matchesDogs && matchesSpecial;
     });
 
     renderCats(filtered);
 }
 
+/* =================================================================
+   4. UI HELPERS & EVENT LISTENERS
+   ================================================================= */
 function openAdoptFormForCat(catName) {
     const catInput = document.getElementById("preferredCatInput");
-    const formContainer = document.querySelector(".form-container"); // Finds the top of the form
+    const formContainer = document.querySelector(".form-container");
     
     if (catInput) {
         catInput.value = catName;
     }
 
     if (formContainer) {
-        formContainer.scrollIntoView({ behavior: 'smooth' }); // Scrolls right to the top of the application section
+        formContainer.scrollIntoView({ behavior: 'smooth' });
     } else {
         alert(`You are interested in adopting ${catName}! Head over to our Adopt page form to submit your application.`);
     }
 }
 
-/* =================================================================
-   4. MOBILE MENU & EVENT LISTENERS
-   ================================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    renderCats(catsData);
-
-    const searchInput = document.getElementById("catSearchInput");
-    const ageSelect = document.getElementById("ageFilterSelect");
-    const sexSelect = document.getElementById("sexFilterSelect");
-    const checkboxes = document.querySelectorAll(".checkbox-filters input");
-
-    if (searchInput) searchInput.addEventListener("input", filterCats);
-    if (ageSelect) ageSelect.addEventListener("change", filterCats);
-    if (sexSelect) sexSelect.addEventListener("change", filterCats);
-    checkboxes.forEach(box => box.addEventListener("change", filterCats));
-
-    // Mobile Hamburger Menu Toggle
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const navLinksMenu = document.getElementById("navLinksMenu");
-
-    if (mobileMenuBtn && navLinksMenu) {
-        mobileMenuBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            navLinksMenu.classList.toggle("active");
-        });
-
-        // Close menu when clicking any link inside
-        const menuLinks = navLinksMenu.querySelectorAll("a");
-        menuLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                navLinksMenu.classList.remove("active");
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", (e) => {
-            if (!navLinksMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                navLinksMenu.classList.remove("active");
-            }
-        });
+// Mobile Menu Toggle Helpers
+function closeMobileMenu() {
+    const navLinks = document.getElementById("navLinksMenu");
+    if (navLinks) {
+        navLinks.classList.remove("active");
     }
-
-    // FAQ Click-to-Reveal Logic
-    const faqItems = document.querySelectorAll(".faq-item");
-    faqItems.forEach(item => {
-        const question = item.querySelector(".faq-question");
-        question.addEventListener("click", () => {
-            item.classList.toggle("active");
-        });
-    });
-});
+}
 
 /* =================================================================
-   IMAGE LIGHTBOX MODAL LOGIC
+   5. IMAGE LIGHTBOX MODAL LOGIC
    ================================================================= */
 function openImageModal(imgSrc, catName) {
     const modal = document.getElementById("catImageModal");
@@ -303,3 +256,64 @@ function closeImageModal() {
         modal.classList.remove("active");
     }
 }
+
+/* =================================================================
+   6. DARK MODE TOGGLE LOGIC
+   ================================================================= */
+function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.getElementById("darkModeToggle");
+    
+    body.classList.toggle("dark-mode");
+    
+    const isDark = body.classList.contains("dark-mode");
+    localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
+    
+    if (btn) {
+        btn.textContent = isDark ? "☀️" : "🌙";
+    }
+}
+
+// Initialize everything on DOM Load
+document.addEventListener("DOMContentLoaded", () => {
+    // Check saved dark mode preference
+    if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+        const btn = document.getElementById("darkModeToggle");
+        if (btn) btn.textContent = "☀️";
+    }
+
+    // Initial render of cats
+    renderCats(catsData);
+
+    // Setup live search & filter listeners
+    document.getElementById("catSearchInput")?.addEventListener("input", filterCats);
+    document.getElementById("ageFilterSelect")?.addEventListener("change", filterCats);
+    document.getElementById("sexFilterSelect")?.addEventListener("change", filterCats);
+    
+    document.getElementById("filterKids")?.addEventListener("change", filterCats);
+    document.getElementById("filterCats")?.addEventListener("change", filterCats);
+    document.getElementById("filterDogs")?.addEventListener("change", filterCats);
+    document.getElementById("filterSpecial")?.addEventListener("change", filterCats);
+
+    // Mobile menu button toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const navLinksMenu = document.getElementById("navLinksMenu");
+    
+    if (mobileMenuBtn && navLinksMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+            navLinksMenu.classList.toggle("active");
+        });
+    }
+
+    // FAQ Click-to-Reveal
+    const faqItems = document.querySelectorAll(".faq-item");
+    faqItems.forEach(item => {
+        const question = item.querySelector(".faq-question");
+        if (question) {
+            question.addEventListener("click", () => {
+                item.classList.toggle("active");
+            });
+        }
+    });
+});
