@@ -161,7 +161,7 @@ catsToDisplay.forEach(cat => {
         const tagsHtml = cat.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
 
         card.innerHTML = `
-            <div class="cat-img-placeholder">
+            <div class="cat-img-placeholder" onclick="openImageModal('${cat.image}', '${cat.name}')" style="cursor: pointer;" title="Click to view larger photo">
                 <img src="${cat.image}" alt="${cat.name}" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="cat-info">
@@ -217,9 +217,14 @@ function filterCats() {
 
 function openAdoptFormForCat(catName) {
     const catInput = document.getElementById("preferredCatInput");
+    const formContainer = document.querySelector(".form-container"); // Finds the top of the form
+    
     if (catInput) {
         catInput.value = catName;
-        catInput.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (formContainer) {
+        formContainer.scrollIntoView({ behavior: 'smooth' }); // Scrolls right to the top of the application section
     } else {
         alert(`You are interested in adopting ${catName}! Head over to our Adopt page form to submit your application.`);
     }
@@ -276,3 +281,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+/* =================================================================
+   IMAGE LIGHTBOX MODAL LOGIC
+   ================================================================= */
+function openImageModal(imgSrc, catName) {
+    const modal = document.getElementById("catImageModal");
+    const modalImg = document.getElementById("modalCatImg");
+    const modalName = document.getElementById("modalCatName");
+    
+    if (modal && modalImg && modalName) {
+        modalImg.src = imgSrc;
+        modalName.textContent = catName;
+        modal.classList.add("active");
+    }
+}
+
+function closeImageModal() {
+    const modal = document.getElementById("catImageModal");
+    if (modal) {
+        modal.classList.remove("active");
+    }
+}

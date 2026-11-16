@@ -469,6 +469,15 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Image Lightbox Modal -->
+<div id="catImageModal" class="cat-modal" onclick="closeImageModal()">
+    <div class="cat-modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeImageModal()">&times;</span>
+        <img id="modalCatImg" src="" alt="Cat View">
+        <h3 id="modalCatName"></h3>
+    </div>
+</div>
 
 </body>
 </html>
