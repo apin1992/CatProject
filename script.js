@@ -122,16 +122,16 @@ const catsData = [
         tags: ["Good with cats", "Good with dogs"],
         image: "assets/smokey.jpg"
     },
-    // {
-    //     id: 13,
-    //     name: "Tinkerbell",
-    //     age: "2 years",
-    //     sex: "Female",
-    //     status: "Looking for love",
-    //     bio: "Tiny but mighty, with a heart full of love to give.",
-    //     tags: ["Good with cats", "Good with kids"],
-    //     image: "assets/newCat.avif"
-    // },
+    {
+        id: 13,
+        name: "Lucky",
+        age: "5 months",
+        sex: "Female",
+        status: "Looking for love",
+        bio: "Tiny but mighty, with a heart full of love to give.",
+        tags: ["Good with cats", "Good with kids"],
+        image: "assets/lucky.jpg"
+    },
 ];
 
 /* =================================================================
